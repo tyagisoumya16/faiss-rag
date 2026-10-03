@@ -1,0 +1,229 @@
+Artificial Intelligence
+
+Artificial Intelligence (AI) is a branch of computer science that focuses on creating systems capable of performing tasks that normally require human intelligence. These tasks include learning, reasoning, problem solving, understanding language, recognizing images, and making decisions.
+
+Machine Learning
+
+Machine Learning (ML) is a subset of Artificial Intelligence. It allows computers to learn patterns from data and make predictions or decisions without being explicitly programmed for every possible situation.
+
+The main types of Machine Learning are supervised learning, unsupervised learning, and reinforcement learning.
+
+Deep Learning
+
+Deep Learning is a subset of Machine Learning that uses artificial neural networks with multiple layers. Deep learning is widely used in computer vision, natural language processing, speech recognition, recommendation systems, and generative AI.
+
+Generative AI
+
+Generative AI refers to artificial intelligence systems that can create new content. This content can include text, images, audio, video, and computer code.
+
+Large Language Models
+
+Large Language Models (LLMs) are neural network models trained on very large collections of text. They learn patterns in language and can generate, summarize, translate, classify, and answer questions about text.
+
+Examples of large language model applications include chatbots, coding assistants, document analysis systems, and question-answering systems.
+
+Embeddings
+
+Embeddings are numerical representations of data such as text. A text embedding converts a piece of text into a vector containing numerical values.
+
+Texts with similar meanings generally have similar vector representations. Embeddings are commonly used for semantic search, recommendation systems, clustering, and Retrieval-Augmented Generation.
+
+Vector Search
+
+Vector search is a search technique that compares numerical vectors to find the most similar items.
+
+Instead of searching only for exact keywords, vector search can find information based on semantic meaning.
+
+FAISS
+
+FAISS stands for Facebook AI Similarity Search. It is a library developed for efficient similarity search and clustering of dense vectors.
+
+FAISS can store vectors in different index structures and efficiently find vectors that are similar to a query vector.
+
+Some important FAISS index types are IndexFlatL2, IndexFlatIP, IVF, HNSW, and Product Quantization.
+
+IndexFlatL2
+
+IndexFlatL2 performs exact nearest-neighbor search using Euclidean distance.
+
+It compares the query vector with stored vectors and returns the vectors with the smallest L2 distance.
+
+IndexFlatIP
+
+IndexFlatIP uses inner product to compare vectors.
+
+When vectors are normalized, inner product can be used to calculate similarity similar to cosine similarity.
+
+IVF
+
+IVF stands for Inverted File Index.
+
+IVF divides vectors into multiple clusters. During a search, only selected clusters are searched instead of comparing the query with every vector.
+
+The nlist parameter controls the number of clusters, while nprobe controls how many clusters are searched for a query.
+
+HNSW
+
+HNSW stands for Hierarchical Navigable Small World.
+
+HNSW is a graph-based approximate nearest-neighbor search algorithm. It creates a graph structure that allows efficient navigation between similar vectors.
+
+HNSW can provide fast similarity search for large collections of vectors.
+
+Product Quantization
+
+Product Quantization, commonly called PQ, is a technique used to compress vectors.
+
+It can significantly reduce memory usage and improve search efficiency, especially when working with very large vector collections.
+
+Semantic Search
+
+Semantic search retrieves information according to its meaning rather than relying only on exact keyword matches.
+
+For example, a query asking "How does AI learn from data?" can retrieve information about Machine Learning even if the exact words are not present in the document.
+
+Retrieval-Augmented Generation
+
+Retrieval-Augmented Generation, commonly called RAG, combines information retrieval with a language model.
+
+A typical RAG system first loads documents and divides them into smaller chunks.
+
+Each chunk is converted into an embedding and stored in a vector index.
+
+When a user asks a question, the question is converted into an embedding.
+
+The vector index searches for the most relevant document chunks.
+
+The retrieved chunks are then provided to a language model as context.
+
+The language model generates an answer using the retrieved context.
+
+RAG Pipeline
+
+A typical RAG pipeline contains the following steps:
+
+1. Document loading
+2. Text splitting
+3. Chunk creation
+4. Embedding generation
+5. Vector indexing
+6. Similarity search
+7. Document retrieval
+8. Context construction
+9. Prompt construction
+10. Language model generation
+
+Chunking
+
+Chunking is the process of dividing a large document into smaller pieces.
+
+Large documents are usually divided into smaller chunks before creating embeddings because smaller chunks can provide more focused retrieval results.
+
+Chunk Overlap
+
+Chunk overlap means keeping a small amount of text from one chunk in the next chunk.
+
+Overlap helps preserve context when important information appears near the boundary between two chunks.
+
+For example, a document can be split into chunks of 500 characters with an overlap of 50 characters.
+
+Similarity Search
+
+Similarity search finds items whose vector representations are closest to a query vector.
+
+In a RAG system, similarity search is used to retrieve the document chunks that are most relevant to the user's question.
+
+Top-K Retrieval
+
+Top-K retrieval means retrieving the K most relevant documents or chunks for a query.
+
+For example, if K is set to 3, the retrieval system returns the three most relevant chunks.
+
+Choosing a very small K may miss useful information, while a very large K may introduce irrelevant information into the prompt.
+
+Cosine Similarity
+
+Cosine similarity measures the similarity between two vectors based on the angle between them.
+
+It is commonly used with text embeddings because it focuses on the direction of vectors rather than their magnitude.
+
+Approximate Nearest Neighbor Search
+
+Approximate Nearest Neighbor (ANN) search finds vectors that are likely to be among the nearest vectors without necessarily comparing the query against every stored vector.
+
+ANN methods can provide significantly faster search for large datasets, although they may introduce a small reduction in exact recall.
+
+FAISS and RAG
+
+FAISS can be used as the vector search layer of a RAG application.
+
+A typical FAISS-based RAG system uses an embedding model to convert documents into vectors, stores those vectors in a FAISS index, retrieves relevant chunks using similarity search, and sends those chunks to a language model.
+
+Advantages of FAISS
+
+FAISS provides fast similarity search and supports multiple index structures.
+
+It can work efficiently with large collections of dense vectors.
+
+FAISS is useful when developers want direct control over vector indexing and similarity search.
+
+FAISS Limitations
+
+FAISS primarily focuses on vector similarity search.
+
+Unlike a full vector database, raw FAISS does not provide a complete database system with built-in document management, metadata filtering, and database-style persistence.
+
+Applications often need to maintain their own mapping between FAISS vector IDs and the original documents or metadata.
+
+FAISS versus ChromaDB
+
+FAISS is primarily a similarity-search library and vector indexing engine.
+
+ChromaDB is a vector database designed to store embeddings along with documents and metadata.
+
+FAISS provides more direct control over indexing structures and is useful for high-performance vector search.
+
+ChromaDB provides a more database-like developer experience for applications that need documents, metadata, collections, and vector retrieval together.
+
+Hugging Face Sentence Transformers
+
+Sentence Transformers are models that can convert sentences and documents into dense vector representations.
+
+The model all-MiniLM-L6-v2 is a lightweight sentence-transformer model commonly used for generating text embeddings.
+
+Groq
+
+Groq provides access to large language models through an API.
+
+In a RAG application, Groq can be used as the generation layer after FAISS retrieves relevant document chunks.
+
+The vector search system retrieves the information, while the language model uses that information to generate a natural-language answer.
+
+Hallucination in RAG
+
+A hallucination occurs when a language model generates information that is unsupported or incorrect.
+
+RAG can help reduce hallucinations by providing relevant external context to the language model.
+
+However, RAG does not completely eliminate hallucinations. Retrieval quality, prompt design, document quality, and model behavior all affect the final answer.
+
+Grounded Generation
+
+Grounded generation means generating an answer based on retrieved information or another trusted source.
+
+In a RAG application, the language model should be instructed to use the retrieved context and avoid inventing information that is not supported by that context.
+
+RAG Applications
+
+RAG can be used for many applications including:
+
+- Company knowledge assistants
+- PDF question-answering systems
+- Research assistants
+- Documentation assistants
+- Customer support systems
+- Legal document search
+- Educational assistants
+- Internal enterprise search
+- Technical documentation assistants
+- Codebase question-answering systems
